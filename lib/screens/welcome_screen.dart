@@ -5,7 +5,8 @@ import 'package:e_learning_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  final String? theme;
+  WelcomeScreen({Key? key, @required this.theme}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           Spacer(),
                           Text(
-                            "Learning everything",
+                            "E-Learning App",
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -53,15 +54,15 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           Text(
-                            "Learn with pleasure with\nus,where you are!",
+                            "Cara termudah jadi pandai adalah belajar dari hal terbodoh yang pernah kamu lakukan",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.black54,
-                              wordSpacing: 2.5,
-                              height: 1.5,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                                color: Colors.black54,
+                                wordSpacing: 2.5,
+                                height: 1.5,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.italic),
                           ),
                           Spacer(
                             flex: 3,
@@ -81,10 +82,11 @@ class WelcomeScreen extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => HomeScreen()));
+                                          builder: (context) =>
+                                              HomeScreen(theme: theme)));
                                 },
                                 child: Text(
-                                  "Get Started",
+                                  "Mulai Belajar",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,

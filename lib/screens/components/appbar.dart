@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
 
-class CustomeAppBar extends StatelessWidget {
-  const CustomeAppBar({
-    Key? key,
-  }) : super(key: key);
+class CostumeAppBar extends StatefulWidget {
+  const CostumeAppBar({Key? key}) : super(key: key);
 
+  @override
+  State<CostumeAppBar> createState() => _CostumeAppBarState();
+}
+
+class _CostumeAppBarState extends State<CostumeAppBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                themeData = "dark";
+              });
+            },
             icon: const Icon(
               Icons.dashboard_rounded,
               color: kblue,

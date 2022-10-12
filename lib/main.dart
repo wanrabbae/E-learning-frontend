@@ -1,20 +1,30 @@
+import 'package:e_learning_app/constants.dart';
 import 'package:e_learning_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var theme = "light";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData(
+          brightness: theme == "dark" ? Brightness.dark : Brightness.light),
       //removing debug banner
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'E-Learning',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +37,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const WelcomeScreen(),
+      home: WelcomeScreen(theme: theme),
     );
   }
 }
