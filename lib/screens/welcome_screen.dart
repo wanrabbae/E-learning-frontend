@@ -2,11 +2,11 @@
 
 import 'package:e_learning_app/constants.dart';
 import 'package:e_learning_app/screens/home_screen.dart';
+import 'package:e_learning_app/screens/template/main_template.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final String? theme;
-  WelcomeScreen({Key? key, @required this.theme}) : super(key: key);
+  WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              HomeScreen(theme: theme)));
+                                              MainTemplate()));
                                 },
                                 child: Text(
                                   "Mulai Belajar",

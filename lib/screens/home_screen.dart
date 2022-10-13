@@ -14,8 +14,7 @@ import 'components/category.dart';
 import 'components/sorting.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String? theme;
-  HomeScreen({Key? key, @required this.theme}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -29,12 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       GoogleTranslator translator = GoogleTranslator();
       var response = await Dio().get(quotesEndpoint);
-      var translated = await translator.translate(response.data[0]["q"],
-          from: "en", to: "id");
-      setState(() {
-        quote = translated;
-        // themeData = "dark";
-      });
+      if (response.statusCode == 200) {
+        var translated = await translator.translate(response.data[0]["q"],
+            from: "en", to: "id");
+        setState(() {
+          quote = translated;
+          // themeData = "dark";
+        });
+      }
     } catch (e) {
       print(e.toString());
     }
@@ -48,29 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //bottom bar
-      // now we will use bottom bar package
-      bottomNavigationBar: BottomNavyBar(
-        mainAxisAlignment: MainAxisAlignment.center,
-        selectedIndex: _selectedIndex,
-        showElevation: true, // use this to remove appBar's elevation
-        onItemSelected: (index) => setState(() {
-          _selectedIndex = index;
-        }),
-        items: [
-          BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Beranda'),
-              activeColor: kpink,
-              inactiveColor: Colors.grey[300]),
-          BottomNavyBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-            inactiveColor: Colors.grey[300],
-            activeColor: kpink,
-          ),
-        ],
-      ),
       body: SafeArea(
         child: RefreshIndicator(
           color: kpink,
@@ -106,51 +84,54 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Hi Alwan",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Hi Alwan",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(
-                                "$quote",
-                                style: TextStyle(
-                                  color: Colors.grey.shade500,
-                                  wordSpacing: 1.5,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  '"$quote"',
+                                  style: TextStyle(
+                                      color: Colors.grey.shade500,
+                                      wordSpacing: 1.5,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Spacer(),
+                          Column(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                    color: kpurple,
+                                    borderRadius: BorderRadius.circular(15.0)),
+                                child: Image.asset(
+                                  "assets/images/profile.png",
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        const Spacer(),
-                        Column(
-                          children: [
-                            Container(
-                              height: 70,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                  color: kpurple,
-                                  borderRadius: BorderRadius.circular(15.0)),
-                              child: Image.asset(
-                                "assets/images/profile.png",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -158,17 +139,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     //category list
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Kelas",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Kelas",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
 
                     //now we create model of our images and colors which we will use in our app
