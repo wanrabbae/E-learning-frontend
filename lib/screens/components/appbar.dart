@@ -17,11 +17,7 @@ class _CostumeAppBarState extends State<CostumeAppBar> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-            onPressed: () {
-              setState(() {
-                themeData = "dark";
-              });
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.dashboard_rounded,
               color: kblue,

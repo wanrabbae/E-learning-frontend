@@ -57,26 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           child: ListView(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        setState(() {
-                          themeData = "dark";
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.dashboard_rounded,
-                        color: kblue,
-                      )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search_rounded,
-                      ))
-                ],
-              ),
               const SizedBox(
                 height: 20,
               ),

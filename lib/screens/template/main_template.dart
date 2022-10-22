@@ -14,6 +14,7 @@ class MainTemplate extends StatefulWidget {
 }
 
 class _MainTemplateState extends State<MainTemplate> {
+  var isDark = false;
   List<Widget> listWidget = [
     HomeScreen(),
     ProfileScreen(),
@@ -27,31 +28,56 @@ class _MainTemplateState extends State<MainTemplate> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      extendBody: true,
-      bottomNavigationBar: BottomNavyBar(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        selectedIndex: selectedIndex,
-        showElevation: true, // use this to remove appBar's elevation
-        onItemSelected: (index) => setState(() {
-          val(index);
-        }),
-        items: [
-          BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Beranda'),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      darkTheme:
+          ThemeData(brightness: isDark ? Brightness.dark : Brightness.light),
+      home: Scaffold(
+        resizeToAvoidBottomInset: false,
+        extendBody: true,
+        appBar: AppBar(
+            backgroundColor: isDark ? Color(0x44000000) : Colors.white,
+            elevation: 0,
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isDark = !isDark;
+                        });
+                      },
+                      icon: Icon(
+                        isDark ? Icons.light_mode : Icons.dark_mode,
+                        color: isDark ? Colors.yellow : Colors.black,
+                      )),
+                ],
+              ),
+            ]),
+        bottomNavigationBar: BottomNavyBar(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          selectedIndex: selectedIndex,
+          showElevation: true, // use this to remove appBar's elevation
+          onItemSelected: (index) => setState(() {
+            val(index);
+          }),
+          items: [
+            BottomNavyBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Beranda'),
+                activeColor: kpink,
+                inactiveColor: Colors.grey[300]),
+            BottomNavyBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile'),
+              inactiveColor: Colors.grey[300],
               activeColor: kpink,
-              inactiveColor: Colors.grey[300]),
-          BottomNavyBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-            inactiveColor: Colors.grey[300],
-            activeColor: kpink,
-          ),
-        ],
+            ),
+          ],
+        ),
+        body: listWidget.elementAt(selectedIndex),
       ),
-      body: listWidget.elementAt(selectedIndex),
     );
   }
 }

@@ -20,8 +20,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData(
-          brightness: theme == "dark" ? Brightness.dark : Brightness.light),
       //removing debug banner
       debugShowCheckedModeBanner: false,
       title: 'E-Learning',
