@@ -37,6 +37,7 @@ dependencies:
   dio: ^4.0.6
   translator: ^0.1.7
   shared_preferences: ^2.0.15
+  phosphor_flutter: ^1.4.0
 
 dev_dependencies:
   flutter_test:

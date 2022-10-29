@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_learning_app/constants.dart';
+import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/home_screen.dart';
+import 'package:e_learning_app/screens/login_screen.dart';
 import 'package:e_learning_app/screens/template/main_template.dart';
 import 'package:flutter/material.dart';
 
@@ -79,11 +81,7 @@ class WelcomeScreen extends StatelessWidget {
                                 color: kpink,
                                 onPressed: () {
                                   //home screen path
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              MainTemplate()));
+                                  goPush(LoginScreen(), context);
                                 },
                                 child: Text(
                                   "Mulai Belajar",
