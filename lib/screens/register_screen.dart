@@ -16,13 +16,13 @@ class RegisterScreeen extends StatefulWidget {
 
 class _RegisterScreeenState extends State<RegisterScreeen> {
   bool _isObscure = true;
+  bool _isObscure2 = true;
   String dropdownValue = 'Daftar sebagai';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: 40),
           child: Column(
             children: [
               Container(
@@ -51,14 +51,16 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                           prefixIcon: Icon(
                             PhosphorIcons.userCircleBold,
                             size: 30,
-                            color: kpink,
+                            color: Colors.grey.shade400,
                           ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           fillColor: Colors.white,
                         ),
                       ),
@@ -74,14 +76,16 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                           prefixIcon: Icon(
                             PhosphorIcons.envelope,
                             size: 30,
-                            color: kpink,
+                            color: Colors.grey.shade400,
                           ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           fillColor: Colors.white,
                         ),
                       ),
@@ -100,7 +104,7 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                           prefixIcon: Icon(
                             PhosphorIcons.lockBold,
                             size: 30,
-                            color: kpink,
+                            color: Colors.grey.shade400,
                           ),
                           suffixIcon: IconButton(
                               onPressed: () {
@@ -112,14 +116,16 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                                 _isObscure
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: kpink,
+                                color: Colors.grey.shade400,
                               )),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           fillColor: Colors.white,
                         ),
                       ),
@@ -128,7 +134,7 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
                         style: TextStyle(fontSize: 12),
-                        obscureText: _isObscure,
+                        obscureText: _isObscure2,
                         enableSuggestions: false,
                         autocorrect: false,
                         decoration: InputDecoration(
@@ -137,26 +143,28 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                           prefixIcon: Icon(
                             PhosphorIcons.lockBold,
                             size: 30,
-                            color: kpink,
+                            color: Colors.grey.shade400,
                           ),
                           suffixIcon: IconButton(
                               onPressed: () {
                                 setState(() {
-                                  _isObscure = !_isObscure;
+                                  _isObscure2 = !_isObscure2;
                                 });
                               },
                               icon: Icon(
-                                _isObscure
+                                _isObscure2
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: kpink,
+                                color: Colors.grey.shade400,
                               )),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           fillColor: Colors.white,
                         ),
                       ),
@@ -172,13 +180,13 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7.0),
-                    border: Border.all(color: kpink, width: 2.0),
+                    border: Border.all(color: Colors.grey.shade400, width: 2.0),
                   ),
                   child: DropdownButton<String>(
                     value: dropdownValue,
                     icon: const Icon(Icons.arrow_downward),
                     iconSize: 12,
-                    iconEnabledColor: kpink,
+                    iconEnabledColor: Colors.grey.shade400,
                     elevation: 0,
                     hint: Text("Daftar sebagai"),
                     style: TextStyle(color: Colors.black),
@@ -227,10 +235,7 @@ class _RegisterScreeenState extends State<RegisterScreeen> {
               Container(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => (LoginScreen())));
+                    goRemove(LoginScreen(), context);
                   },
                   child: Text(
                     "Login",

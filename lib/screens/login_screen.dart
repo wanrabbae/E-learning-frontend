@@ -21,7 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: 40),
           child: Column(
             children: [
               Container(
@@ -50,14 +49,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefixIcon: Icon(
                             PhosphorIcons.userCircleBold,
                             size: 30,
-                            color: kpink,
+                            color: Colors.grey.shade400,
                           ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           fillColor: Colors.white,
                         ),
                       ),
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefixIcon: Icon(
                             PhosphorIcons.lockBold,
                             size: 30,
-                            color: kpink,
+                            color: Colors.grey.shade400,
                           ),
                           suffixIcon: IconButton(
                               onPressed: () {
@@ -87,14 +88,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _isObscure
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: kpink,
+                                color: Colors.grey.shade400,
                               )),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7.0),
-                              borderSide: BorderSide(color: kpink, width: 2.0)),
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade400, width: 2.0)),
                           fillColor: Colors.white,
                         ),
                       ),
@@ -113,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       goPush(MainTemplate(), context);
                     },
                     child: Text(
-                      "LOGIN",
+                      "Masuk",
                       style: TextStyle(color: Colors.white),
                     ),
                     style: TextButton.styleFrom(
