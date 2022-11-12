@@ -35,26 +35,6 @@ class _MainTemplateState extends State<MainTemplate> {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        appBar: AppBar(
-            backgroundColor: isDark ? Color(0x44000000) : Colors.white,
-            elevation: 0,
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isDark = !isDark;
-                        });
-                      },
-                      icon: Icon(
-                        isDark ? Icons.light_mode : Icons.dark_mode,
-                        color: isDark ? Colors.yellow : Colors.black,
-                      )),
-                ],
-              ),
-            ]),
         bottomNavigationBar: BottomNavyBar(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           selectedIndex: selectedIndex,

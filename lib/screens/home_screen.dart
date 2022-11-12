@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ListView(
             children: [
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 20,
                     ),
 
-                    //category list
+                    //class list
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),

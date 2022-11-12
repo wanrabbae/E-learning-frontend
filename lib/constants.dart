@@ -6,3 +6,9 @@ const kblue = Color(0xFF71b8ff);
 const kpurple = Color(0xFF9ba0fc);
 const korange = Color(0xFFffaa5b);
 const quotesEndpoint = "https://zenquotes.io/api/random";
+
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+double lebar = MediaQuery.of(navigatorKey.currentContext!).size.width;
+
+double tinggi = MediaQuery.of(navigatorKey.currentContext!).size.height;

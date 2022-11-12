@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
       //removing debug banner
       debugShowCheckedModeBanner: false,
       title: 'E-Learning',
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         // This is the theme of your application.
         //

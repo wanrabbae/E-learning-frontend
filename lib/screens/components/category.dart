@@ -33,7 +33,14 @@ class ClassCard extends StatelessWidget {
       child: Container(
         // padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            color: product.color, borderRadius: BorderRadius.circular(15.0)),
+            image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.3), BlendMode.darken),
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                    // "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
+                    "https://source.unsplash.com/random")),
+            borderRadius: BorderRadius.circular(15.0)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(

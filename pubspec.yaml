@@ -38,6 +38,7 @@ dependencies:
   translator: ^0.1.7
   shared_preferences: ^2.0.15
   phosphor_flutter: ^1.4.0
+  image_picker: ^0.8.6
 
 dev_dependencies:
   flutter_test:
