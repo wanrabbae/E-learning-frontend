@@ -39,6 +39,12 @@ dependencies:
   shared_preferences: ^2.0.15
   phosphor_flutter: ^1.4.0
   image_picker: ^0.8.6
+  flutter_launcher_icons: ^0.10.0
+
+flutter_icons:
+  image_path: "assets/images/elearning.jpg"
+  android: true
+  ios: true
 
 dev_dependencies:
   flutter_test:
