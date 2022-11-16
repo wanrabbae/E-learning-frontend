@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_learning_app/constants.dart';
-import 'package:e_learning_app/model/quotes_model.dart';
+import 'package:e_learning_app/core/model/quotes_model.dart';
 
 class QuoteService {
   Future<QuotesModel?> fetchQuotes() async {
