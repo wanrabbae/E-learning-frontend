@@ -1,14 +1,21 @@
-import 'package:e_learning_app/constants.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-Future goPush(Widget widget, context) async =>
-    Navigator.push(context, MaterialPageRoute(builder: ((context) => widget)));
+Future goPush(Widget widget) async {
+  return await Navigator.push(navigatorKey.currentState!.context,
+      MaterialPageRoute(builder: (_) => widget));
+}
 
-Future goRemove(Widget widget, context) async => Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(builder: ((context) => widget)),
-    ((route) => false));
+Future goReplacement(Widget widget) async {
+  return await Navigator.pushReplacement(navigatorKey.currentState!.context,
+      MaterialPageRoute(builder: (context) => widget));
+}
 
-Future goBack([args]) async =>
-    Navigator.of(navigatorKey.currentContext!).pop(args);
+Future goRemove(Widget widget) async {
+  return await Navigator.pushAndRemoveUntil(navigatorKey.currentState!.context,
+      MaterialPageRoute(builder: (context) => widget), (route) => false);
+}
+
+Future goBack({dynamic argument}) async {
+  return Navigator.pop(navigatorKey.currentState!.context, argument);
+}

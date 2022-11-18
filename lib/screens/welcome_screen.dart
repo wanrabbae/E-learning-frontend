@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:e_learning_app/constants.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/home_screen.dart';
 import 'package:e_learning_app/screens/login_screen.dart';
@@ -81,7 +81,7 @@ class WelcomeScreen extends StatelessWidget {
                                 color: kpink,
                                 onPressed: () {
                                   //home screen path
-                                  goPush(LoginScreen(), context);
+                                  goPush(LoginScreen());
                                 },
                                 child: Text(
                                   "Mulai Belajar",

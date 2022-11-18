@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:dio/dio.dart';
-import 'package:e_learning_app/constants.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/core/model/product_model.dart';
 import 'package:e_learning_app/core/model/quotes_model.dart';
 import 'package:e_learning_app/services/quotes_service.dart';

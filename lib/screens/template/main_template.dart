@@ -1,5 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:e_learning_app/constants.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/screens/home_screen.dart';
 import 'package:e_learning_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
