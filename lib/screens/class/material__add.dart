@@ -83,7 +83,7 @@ class _MaterialAddState extends State<MaterialAdd> {
                         width: EdgeInsets.symmetric(horizontal: 60).horizontal,
                         child: TextButton(
                           onPressed: () {
-                            goPush(ClassTemplate(), context);
+                            goPush(ClassTemplate());
                           },
                           child: Text(
                             "Tambahkan",
