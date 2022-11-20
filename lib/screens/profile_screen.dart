@@ -63,67 +63,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
         showDialog(
           context: navigatorKey.currentContext!,
           builder: (context) {
-            return image == null
-                ? AlertDialog(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    title: Text("Please choose media to select"),
-                    content: Container(
-                      height: tinggi / 7,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          FlatButton.icon(
-                            onPressed: () {
-                              getImage();
-                            },
-                            label: Text('From Gallery'),
-                            icon: Icon(Icons.image),
-                          ),
-                          FlatButton.icon(
-                            onPressed: () {
-                              getPhoto();
-                            },
-                            label: Text('From Camera'),
-                            icon: Icon(PhosphorIcons.camera),
-                          ),
-                        ],
-                      ),
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              title: Text("Silahkan pilih media untuk upload"),
+              content: Container(
+                height: tinggi / 7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    FlatButton.icon(
+                      onPressed: () {
+                        getImage();
+                      },
+                      label: Text('Galeri'),
+                      icon: Icon(Icons.image),
                     ),
-                  )
-                : AlertDialog(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    title: Text("Yakin Mengubah Foto?"),
-                    content: Container(
-                      height: tinggi / 7,
-                      child: Column(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              FlatButton.icon(
-                                onPressed: () {
-                                  modalProfil(image);
-                                },
-                                label: Text('Show'),
-                                icon: Icon(Icons.image),
-                              ),
-                              FlatButton.icon(
-                                onPressed: () {
-                                  image = null;
-                                  setState(() {});
-                                  goBack();
-                                },
-                                label: Text('Cancel'),
-                                icon: Icon(PhosphorIcons.camera),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    FlatButton.icon(
+                      onPressed: () {
+                        getPhoto();
+                      },
+                      label: Text('Kamera'),
+                      icon: Icon(PhosphorIcons.camera),
                     ),
-                  );
+                  ],
+                ),
+              ),
+            );
           },
         )
       };

@@ -10,7 +10,7 @@ import 'package:translator/translator.dart';
 import 'package:flutter/material.dart';
 
 import 'components/appbar.dart';
-import 'components/category.dart';
+import 'components/classes.dart';
 import 'components/sorting.dart';
 
 class HomeScreen extends StatefulWidget {
