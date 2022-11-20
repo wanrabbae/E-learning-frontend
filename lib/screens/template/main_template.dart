@@ -1,7 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:e_learning_app/constants.dart';
+// import 'package:e_learning_app/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/class_add.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/screens/home_screen.dart';
 import 'package:e_learning_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _MainTemplateState extends State<MainTemplate> {
         body: listWidget.elementAt(selectedIndex),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            goPush(ClassAdd(), context);
+            goPush(ClassAdd());
           },
           backgroundColor: kpink,
           child: Icon(Icons.add),

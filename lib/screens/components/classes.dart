@@ -1,5 +1,5 @@
+import 'package:e_learning_app/core/model/product_model.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
-import 'package:e_learning_app/model/product_model.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class ClassCard extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: () {
-          goPush(ClassTemplate(), context);
+          goPush(ClassTemplate());
         },
         child: Container(
           // padding: const EdgeInsets.all(10.0),

@@ -1,5 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:e_learning_app/constants.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/assignment_add.dart';
 import 'package:e_learning_app/screens/class/class_home.dart';
@@ -50,7 +50,7 @@ class _ClassTemplateState extends State<ClassTemplate> {
             children: [
               InkWell(
                 onTap: () {
-                  goPush(AssignmentAdd(), context);
+                  goPush(AssignmentAdd());
                 },
                 child: Container(
                   padding: EdgeInsets.only(bottom: 20, top: 5),
@@ -75,7 +75,7 @@ class _ClassTemplateState extends State<ClassTemplate> {
               ),
               InkWell(
                 onTap: () {
-                  goPush(MaterialAdd(), context);
+                  goPush(MaterialAdd());
                 },
                 child: Container(
                   padding: EdgeInsets.only(bottom: 20, top: 5),

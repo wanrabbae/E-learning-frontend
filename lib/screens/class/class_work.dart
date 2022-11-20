@@ -42,7 +42,7 @@ class _ClassWorkState extends State<ClassWork> {
                 ),
                 child: InkWell(
                   onTap: () {
-                    goPush(AssignmentView(), context);
+                    goPush(AssignmentView());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,

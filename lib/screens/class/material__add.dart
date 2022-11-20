@@ -1,4 +1,4 @@
-import 'package:e_learning_app/constants.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
 import 'package:flutter/material.dart';

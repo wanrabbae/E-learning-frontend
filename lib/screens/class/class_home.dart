@@ -1,4 +1,3 @@
-import 'package:e_learning_app/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/material.dart';
 import 'package:flutter/material.dart';
@@ -208,7 +207,7 @@ class _ClassHomeState extends State<ClassHome> {
                     ),
                     child: InkWell(
                       onTap: () {
-                        goPush(MaterialView(), context);
+                        goPush(MaterialView());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
