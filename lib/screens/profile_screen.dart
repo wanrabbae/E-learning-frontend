@@ -462,7 +462,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                 MaterialStateProperty
                                                                     .all(
                                                                         kpink)),
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          dashProv
+                                                              .deleteProfile();
+                                                        },
                                                         child: Text(
                                                           "Ya",
                                                           style: TextStyle(

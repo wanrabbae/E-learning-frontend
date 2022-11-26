@@ -5,6 +5,9 @@ import 'package:e_learning_app/core/model/class_model.dart';
 import 'package:e_learning_app/core/model/detailClass_model.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:e_learning_app/core/utils/session_manager.dart';
+import 'package:e_learning_app/helper/navigator_helper.dart';
+import 'package:e_learning_app/screens/welcome_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ClassRepository {
@@ -24,6 +27,9 @@ class ClassRepository {
 
     if (res.statusCode == 200) {
       return ClassModel.fromJson(res.data);
+    } else if (res.statusCode == 500) {
+      SessionManager.clearSession();
+      goRemove(WelcomeScreen());
     }
   }
 

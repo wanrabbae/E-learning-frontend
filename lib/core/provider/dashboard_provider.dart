@@ -7,6 +7,7 @@ import 'package:e_learning_app/core/utils/session_manager.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/login_screen.dart';
 import 'package:e_learning_app/screens/template/main_template.dart';
+import 'package:e_learning_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:translator/translator.dart';
 
@@ -39,6 +40,18 @@ class DashboardProvider extends ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future deleteProfile() async {
+    _isLoading = true;
+    var res = await UserRepository.deleteProfile();
+    _isLoading = false;
+    if (res["status"] == 200) {
+      SessionManager.clearSession();
+      goRemove(WelcomeScreen());
+    } else if (res["status"] == 500) {
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
   }
 
   Future getQuotes() async {
