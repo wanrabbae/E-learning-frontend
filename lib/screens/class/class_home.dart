@@ -186,6 +186,8 @@ class _ClassHomeState extends State<ClassHome> {
                                 // const Padding(padding: EdgeInsets.only(top: 5)),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       classProv.kelas,
@@ -194,6 +196,33 @@ class _ClassHomeState extends State<ClassHome> {
                                           color: Colors.white,
                                           fontWeight: FontWeight.w600),
                                     ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "Materi: " +
+                                              classProv.listMateri!.length
+                                                  .toString(),
+                                          style: const TextStyle(
+                                              fontSize: 11,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Tugas: " +
+                                              classProv.listAssigment!.length
+                                                  .toString(),
+                                          style: const TextStyle(
+                                              fontSize: 11,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300),
+                                        )
+                                      ],
+                                    )
                                     // Padding(padding: EdgeInsets.symmetric(vertical: 5)),
                                   ],
                                 ),

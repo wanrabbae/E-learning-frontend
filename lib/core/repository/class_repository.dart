@@ -27,18 +27,17 @@ class ClassRepository {
 
     if (res.statusCode == 200) {
       return ClassModel.fromJson(res.data);
-    } else if (res.statusCode == 500) {
-      SessionManager.clearSession();
-      goRemove(WelcomeScreen());
     }
   }
 
   static Future<DetailclassModel?> getDetailClass(id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
     var res = await dio.get(
       "$endpoint/class?id=$id",
       options: Options(
         headers: {
-          "Authorization": "Bearer $token",
+          "Authorization": "Bearer $token2",
         },
       ),
     );

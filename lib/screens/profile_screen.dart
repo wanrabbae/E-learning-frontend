@@ -96,12 +96,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         )
       };
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => DashboardProvider(),
       child: Consumer<DashboardProvider>(builder: (context, dashProv, _) {
+        TextEditingController namaController =
+            TextEditingController(text: dashProv.data?.nama);
+        TextEditingController emailController =
+            TextEditingController(text: dashProv.data?.email);
+        TextEditingController passwordController = TextEditingController();
+        TextEditingController confirmController = TextEditingController();
         return dashProv.isLoading == true
             ? Center(
                 child: CircularProgressIndicator(),
@@ -166,8 +171,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 20),
                                 child: TextFormField(
-                                  initialValue: dashProv.data?.nama,
                                   style: TextStyle(fontSize: 12),
+                                  controller: namaController,
                                   decoration: InputDecoration(
                                     contentPadding:
                                         EdgeInsets.symmetric(vertical: 10),
@@ -196,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 20),
                                 child: TextFormField(
-                                  initialValue: dashProv.data?.email,
+                                  controller: emailController,
                                   style: TextStyle(fontSize: 12),
                                   decoration: InputDecoration(
                                     contentPadding:
@@ -233,6 +238,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 margin: EdgeInsets.only(bottom: 20, top: 20),
                                 child: TextFormField(
                                   style: TextStyle(fontSize: 12),
+                                  controller: passwordController,
                                   obscureText: _isObscure2,
                                   enableSuggestions: false,
                                   autocorrect: false,
@@ -278,6 +284,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: TextFormField(
                                   style: TextStyle(fontSize: 12),
                                   obscureText: _isObscure3,
+                                  controller: confirmController,
                                   enableSuggestions: false,
                                   autocorrect: false,
                                   decoration: InputDecoration(
@@ -324,7 +331,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   width: EdgeInsets.symmetric(horizontal: 60)
                                       .horizontal,
                                   child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      print("Nama: " + namaController.text);
+                                      print("Email: " + emailController.text);
+                                      print("Password: " +
+                                          passwordController.text);
+                                      print("Password 2: " +
+                                          confirmController.text);
+                                    },
                                     child: Text(
                                       "Simpan",
                                       style: TextStyle(color: Colors.white),

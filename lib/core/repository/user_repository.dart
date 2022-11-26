@@ -27,9 +27,6 @@ class UserRepository {
 
     if (res.statusCode == 200) {
       return UserModel.fromJson(res.data);
-    } else if (res.statusCode == 500) {
-      SessionManager.clearSession();
-      goRemove(WelcomeScreen());
     }
   }
 
