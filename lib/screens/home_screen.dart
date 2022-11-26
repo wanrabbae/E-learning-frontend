@@ -123,9 +123,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         15.0)),
-                                            child: Image.asset(
-                                              "assets/images/profile.png",
-                                            ),
+                                            child: dashProv.data!.photo != null
+                                                ? Image.network(
+                                                    dashProv.data!.photo
+                                                        .toString(),
+                                                  )
+                                                : Image.asset(
+                                                    "assets/images/profile.png",
+                                                  ),
                                           ),
                                         ],
                                       ),
