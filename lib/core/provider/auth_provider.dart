@@ -22,7 +22,7 @@ class AuthProvider extends ChangeNotifier {
     if (res["status"] == 201) {
       goBack();
       SnackBar(backgroundColor: Colors.green, content: Text(res["message"]));
-    } else if (res["status" == 400]) {
+    } else if (res["status"] == 400) {
       SnackBar(backgroundColor: Colors.red, content: Text(res["message"]));
     }
   }
@@ -32,7 +32,8 @@ class AuthProvider extends ChangeNotifier {
     var res = await AuthRepository.login(requestBody);
     isLoading = false;
     if (res["status"] == 200) {
-      SessionManager.setSession(res["token"]);
+      SessionManager.setToken(res["token"]);
+      SessionManager.setRole(res["data"]["role"]);
       goRemove(MainTemplate());
     } else if (res["status"] == 400) {
       SnackBar(backgroundColor: Colors.red, content: Text(res["message"]));

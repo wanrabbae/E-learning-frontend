@@ -11,7 +11,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class ClassTemplate extends StatefulWidget {
-  const ClassTemplate({Key? key}) : super(key: key);
+  const ClassTemplate({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ClassTemplate> createState() => _ClassTemplateState();

@@ -1,7 +1,11 @@
+import 'package:e_learning_app/core/model/class_model.dart';
 import 'package:e_learning_app/core/model/product_model.dart';
+import 'package:e_learning_app/core/provider/class_provider.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ClassList extends StatelessWidget {
   const ClassList({
@@ -10,15 +14,28 @@ class ClassList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        shrinkWrap: true,
-        physics: ScrollPhysics(),
-        itemCount: products.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1, childAspectRatio: 1.6),
-        itemBuilder: (context, index) => ClassCard(
-              product: products[index],
-            ));
+    return ChangeNotifierProvider(
+        create: (_) => ClassProvider(),
+        child: Consumer<ClassProvider>(
+          builder: (context, classProv, _) {
+            return classProv.isLoading == true
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : GridView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemCount: classProv.listClass!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1, childAspectRatio: 1.6),
+                    itemBuilder: (context, index) {
+                      var i = classProv.listClass![index];
+                      return ClassCard(
+                        product: i,
+                      );
+                    });
+          },
+        ));
   }
 }
 
@@ -27,13 +44,14 @@ class ClassCard extends StatelessWidget {
     Key? key,
     required this.product,
   }) : super(key: key);
-  final Product product;
+  final Datum product;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: () {
+          idClass = product.id;
           goPush(ClassTemplate());
         },
         child: Container(
@@ -43,9 +61,7 @@ class ClassCard extends StatelessWidget {
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.3), BlendMode.darken),
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      // "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
-                      "https://source.unsplash.com/random")),
+                  image: NetworkImage("https://source.unsplash.com/random")),
               borderRadius: BorderRadius.circular(15.0)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -58,7 +74,7 @@ class ClassCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.title,
+                      product.title.toString(),
                       style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -66,7 +82,7 @@ class ClassCard extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 5)),
                     Text(
-                      "Guru: ${product.teacher}",
+                      "Guru: ${product.user!.nama}",
                       style: const TextStyle(
                           fontSize: 11,
                           color: Colors.white,
@@ -74,13 +90,13 @@ class ClassCard extends StatelessWidget {
                     )
                   ],
                 ),
-                Text(
-                  "${product.courses} tugas",
-                  style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
-                ),
+                // Text(
+                //   "${product.teacherId} tugas",
+                //   style: const TextStyle(
+                //     fontSize: 15,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 // const Padding(padding: EdgeInsets.only(bottom: 5)),
               ],
             ),

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_learning_app/core/utils/constants.dart';
+import 'package:e_learning_app/core/utils/session_manager.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/home_screen.dart';
 import 'package:e_learning_app/screens/login_screen.dart';
@@ -9,9 +10,13 @@ import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({Key? key}) : super(key: key);
+  Future init() async {
+    SessionManager.checkSession();
+  }
 
   @override
   Widget build(BuildContext context) {
+    init();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

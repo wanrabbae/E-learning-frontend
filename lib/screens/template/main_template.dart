@@ -60,13 +60,6 @@ class _MainTemplateState extends State<MainTemplate> {
           ],
         ),
         body: listWidget.elementAt(selectedIndex),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            goPush(ClassAdd());
-          },
-          backgroundColor: kpink,
-          child: Icon(Icons.add),
-        ),
       ),
     );
   }

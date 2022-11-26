@@ -8,11 +8,15 @@ const kblue = Color(0xFF71b8ff);
 const kpurple = Color(0xFF9ba0fc);
 const korange = Color(0xFFffaa5b);
 const quotesEndpoint = "https://zenquotes.io/api/random";
-const endpoint = "http://192.168.1.53:4000/api";
+const endpoint = "https://elearning.afkaaruna.sch.id/api";
 
 Dio dio = Dio();
 
-UserModel? user;
+String? token;
+
+String? role;
+
+int? idClass;
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:e_learning_app/core/utils/constants.dart';
+import 'package:e_learning_app/core/utils/session_manager.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -342,7 +343,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Container(
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          SessionManager.clearSession();
+                        },
                         child: Text(
                           "Keluar",
                           style: TextStyle(
