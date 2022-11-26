@@ -49,4 +49,33 @@ class UserRepository {
       return res.data;
     }
   }
+
+  static Future updateProfile(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    String fileName = data["image"].path.split("/").last;
+
+    FormData formData = FormData.fromMap({
+      "photo":
+          await MultipartFile.fromFile(data["image"].path, filename: fileName),
+      "nama": data["nama"],
+      "email": data["email"],
+      "password": data["password"],
+      "password_confirmed": data["password_confirmed"],
+    });
+
+    var res = await dio.put(
+      "$endpoint/profile/update",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+    print(res.data);
+    if (res.statusCode == 200) {
+      return res.data;
+    }
+  }
 }

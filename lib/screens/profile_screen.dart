@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:e_learning_app/core/provider/dashboard_provider.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/core/utils/session_manager.dart';
@@ -332,12 +333,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       .horizontal,
                                   child: TextButton(
                                     onPressed: () {
-                                      print("Nama: " + namaController.text);
-                                      print("Email: " + emailController.text);
-                                      print("Password: " +
-                                          passwordController.text);
-                                      print("Password 2: " +
-                                          confirmController.text);
+                                      var data = {
+                                        "image": image,
+                                        "nama": namaController.text,
+                                        "email": emailController.text,
+                                        "password": passwordController.text,
+                                        "password_confirmed":
+                                            confirmController.text
+                                      };
+                                      dashProv.updateProfile(data);
                                     },
                                     child: Text(
                                       "Simpan",

@@ -54,6 +54,17 @@ class DashboardProvider extends ChangeNotifier {
     }
   }
 
+  Future updateProfile(data) async {
+    _isLoading = true;
+    var res = await UserRepository.updateProfile(data);
+    _isLoading = false;
+    if (res["status"] == 200) {
+      goPush(MainTemplate());
+    } else if (res["status"] == 500) {
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
+  }
+
   Future getQuotes() async {
     try {
       GoogleTranslator translator = GoogleTranslator();
