@@ -48,4 +48,49 @@ class ClassRepository {
       return DetailclassModel.fromJson(res.data);
     }
   }
+
+  static Future addClass(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    String fileName = data["image"].path.split("/").last;
+
+    FormData formData = FormData.fromMap({
+      "banner":
+          await MultipartFile.fromFile(data["image"].path, filename: fileName),
+      "title": data["nama"],
+    });
+
+    var res = await dio.post(
+      "$endpoint/class",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
+
+  static Future deleteClass(id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    var res = await dio.delete(
+      "$endpoint/class?id=$id",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token2",
+        },
+      ),
+    );
+
+    log(res.realUri.toString());
+
+    if (res.statusCode == 200) {
+      return res.data;
+    }
+  }
 }

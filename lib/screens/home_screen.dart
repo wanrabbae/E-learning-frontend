@@ -42,27 +42,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CircularProgressIndicator(),
                 )
               : Scaffold(
-                  // floatingActionButton: role!.toLowerCase() == "guru"
-                  //     ? Padding(
-                  //         padding: const EdgeInsets.only(bottom: 60),
-                  //         child: FloatingActionButton(
-                  //           onPressed: () {
-                  //             goPush(ClassAdd());
-                  //           },
-                  //           backgroundColor: kpink,
-                  //           child: Icon(Icons.add),
-                  //         ),
-                  //       )
-                  //     : Padding(
-                  //         padding: const EdgeInsets.only(top: 200),
-                  //         child: FloatingActionButton(
-                  //           onPressed: () {
-                  //             goPush(ClassAdd());
-                  //           },
-                  //           backgroundColor: kpink,
-                  //           child: Icon(Icons.add),
-                  //         ),
-                  //       ),
+                  floatingActionButton: role!.toLowerCase() == "guru"
+                      ? Padding(
+                          padding: const EdgeInsets.only(bottom: 60),
+                          child: FloatingActionButton(
+                            onPressed: () {
+                              goPush(ClassAdd());
+                            },
+                            backgroundColor: kpink,
+                            child: Icon(Icons.add),
+                          ),
+                        )
+                      : Text(""),
                   body: SafeArea(
                     child: RefreshIndicator(
                       color: kpink,
@@ -118,15 +109,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           Container(
                                             height: 70,
                                             width: 70,
-                                            decoration: BoxDecoration(
-                                                color: kpurple,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        15.0)),
                                             child: dashProv.data!.photo != null
-                                                ? Image.network(
-                                                    dashProv.data!.photo
-                                                        .toString(),
+                                                ? CircleAvatar(
+                                                    backgroundImage:
+                                                        NetworkImage(dashProv
+                                                            .data!.photo
+                                                            .toString()),
                                                   )
                                                 : Image.asset(
                                                     "assets/images/profile.png",

@@ -137,8 +137,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     fit: BoxFit.cover,
                                   )
                                 : dashProv.data!.photo != null
-                                    ? Image.network(
-                                        dashProv.data!.photo.toString(),
+                                    ? CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            dashProv.data!.photo.toString()),
                                       )
                                     : Image.network(
                                         "https://cdn.discordapp.com/attachments/990841636386897971/1028946003744788521/person-4.png",
@@ -325,35 +326,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.only(bottom: 10),
-                                child: SizedBox(
-                                  width: EdgeInsets.symmetric(horizontal: 60)
-                                      .horizontal,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      var data = {
-                                        "image": image,
-                                        "nama": namaController.text,
-                                        "email": emailController.text,
-                                        "password": passwordController.text,
-                                        "password_confirmed":
-                                            confirmController.text
-                                      };
-                                      dashProv.updateProfile(data);
-                                    },
-                                    child: Text(
-                                      "Simpan",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    style: TextButton.styleFrom(
-                                      padding: EdgeInsets.all(10),
-                                      backgroundColor: kpink,
+                              Consumer<DashboardProvider>(
+                                  builder: (context, dashProv2, _) {
+                                return Container(
+                                  width: double.infinity,
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  child: SizedBox(
+                                    width: EdgeInsets.symmetric(horizontal: 60)
+                                        .horizontal,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        var data = {
+                                          "image": image,
+                                          "nama": namaController.text,
+                                          "email": emailController.text,
+                                          "password": passwordController.text,
+                                          "password_confirmed":
+                                              confirmController.text
+                                        };
+                                        dashProv2.updateProfile(data);
+                                      },
+                                      child: dashProv2.isLoading
+                                          ? Center(
+                                              child: CircularProgressIndicator(
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          : Text(
+                                              "Simpan",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                      style: TextButton.styleFrom(
+                                        padding: EdgeInsets.all(10),
+                                        backgroundColor: kpink,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                );
+                              }),
                               Container(
                                 child: TextButton(
                                   onPressed: () {

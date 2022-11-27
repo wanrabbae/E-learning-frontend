@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:e_learning_app/core/provider/class_provider.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:provider/provider.dart';
 
 class ClassAdd extends StatefulWidget {
   const ClassAdd({Key? key}) : super(key: key);
@@ -90,98 +92,119 @@ class _ClassAddState extends State<ClassAdd> {
           },
         )
       };
-
+  var nama;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-            margin: EdgeInsets.only(top: 30),
-            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      PhosphorIcons.xBold,
-                      size: 25,
-                    )),
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: "Nama Kelas",
-                          hintStyle: TextStyle(fontSize: 20),
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(width: 1)),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: kpink),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      TextFormField(
-                        onTap: () {
-                          selectImage(getImage);
-                        },
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(PhosphorIcons.paperclipBold),
-                          hintText: "Banner Kelas",
-                          hintStyle: TextStyle(fontSize: 12),
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(width: 1)),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: kpink),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        width: image != null ? double.infinity : 0,
-                        height: image != null ? 150 : 0,
-                        child: image != null
-                            ? Image.file(
-                                image!,
-                                fit: BoxFit.cover,
-                              )
-                            : Text(""),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        width: double.infinity,
-                        child: SizedBox(
-                          width:
-                              EdgeInsets.symmetric(horizontal: 60).horizontal,
-                          child: TextButton(
-                            onPressed: () {
-                              goPush(ClassTemplate());
-                            },
-                            child: Text(
-                              "Buat Kelas",
-                              style: TextStyle(color: Colors.white),
+    return ChangeNotifierProvider(
+      create: (_) => ClassProvider(),
+      child: Consumer<ClassProvider>(builder: (context, classProv, _) {
+        return classProv.isLoading == true
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Scaffold(
+                body: SingleChildScrollView(
+                  child: Container(
+                      margin: EdgeInsets.only(top: 30),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                PhosphorIcons.xBold,
+                                size: 25,
+                              )),
+                          Container(
+                            margin: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextFormField(
+                                  onChanged: (val) {
+                                    setState(() {
+                                      nama = val;
+                                    });
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: "Nama Kelas",
+                                    hintStyle: TextStyle(fontSize: 20),
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(width: 1)),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: kpink),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20),
+                                TextFormField(
+                                  onTap: () {
+                                    selectImage(getImage);
+                                  },
+                                  decoration: InputDecoration(
+                                    prefixIcon:
+                                        Icon(PhosphorIcons.paperclipBold),
+                                    hintText: "Banner Kelas",
+                                    hintStyle: TextStyle(fontSize: 12),
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(width: 1)),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: kpink),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20),
+                                Container(
+                                  width: image != null ? double.infinity : 0,
+                                  height: image != null ? 150 : 0,
+                                  child: image != null
+                                      ? Image.file(
+                                          image!,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Text(""),
+                                ),
+                                SizedBox(height: 20),
+                                Container(
+                                  width: double.infinity,
+                                  child: SizedBox(
+                                    width: EdgeInsets.symmetric(horizontal: 60)
+                                        .horizontal,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        var data = {
+                                          "image": image,
+                                          "nama": nama.toString(),
+                                        };
+
+                                        classProv.addClass(data);
+                                      },
+                                      child: Text(
+                                        "Buat Kelas",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      style: TextButton.styleFrom(
+                                        padding: EdgeInsets.all(10),
+                                        backgroundColor: kpink,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.all(10),
-                              backgroundColor: kpink,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )),
-      ),
+                          )
+                        ],
+                      )),
+                ),
+              );
+      }),
     );
   }
 }

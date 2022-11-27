@@ -172,9 +172,16 @@ class _ClassHomeState extends State<ClassHome> {
                                       Colors.black.withOpacity(0.3),
                                       BlendMode.darken),
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      // "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
-                                      "https://source.unsplash.com/random")),
+                                  image: classProv.banner != null
+                                      ? classProv.banner
+                                              .toString()
+                                              .contains("null")
+                                          ? NetworkImage(
+                                              "https://picsum.photos/500/300")
+                                          : NetworkImage(
+                                              classProv.banner.toString())
+                                      : NetworkImage(
+                                          "https://picsum.photos/500/300")),
                               borderRadius: BorderRadius.circular(15.0)),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(

@@ -44,7 +44,7 @@ class UserRepository {
     );
 
     log(res.realUri.toString());
-    print(res.data);
+
     if (res.statusCode == 200) {
       return res.data;
     }
@@ -73,7 +73,7 @@ class UserRepository {
     );
 
     log(res.realUri.toString());
-    print(res.data);
+
     if (res.statusCode == 200) {
       return res.data;
     }

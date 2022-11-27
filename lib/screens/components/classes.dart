@@ -61,11 +61,15 @@ class ClassCard extends StatelessWidget {
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.3), BlendMode.darken),
                   fit: BoxFit.cover,
-                  image: NetworkImage("https://source.unsplash.com/random")),
+                  image: product.banner != null
+                      ? product.banner.toString().contains("null")
+                          ? NetworkImage("https://picsum.photos/500/300")
+                          : NetworkImage(product.banner.toString())
+                      : NetworkImage("https://picsum.photos/500/300")),
               borderRadius: BorderRadius.circular(15.0)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -90,6 +94,46 @@ class ClassCard extends StatelessWidget {
                     )
                   ],
                 ),
+                role!.toLowerCase() == "guru"
+                    ? Consumer<ClassProvider>(builder: (context, classProv, _) {
+                        return PopupMenuButton(
+                            icon: Icon(Icons.more_vert,
+                                color: Colors.white), // add this line
+                            itemBuilder: (_) => <PopupMenuItem<String>>[
+                                  PopupMenuItem<String>(
+                                      child: Container(
+                                          width: 100,
+                                          // height: 30,
+                                          child: Text(
+                                            "Delete",
+                                            style: TextStyle(
+                                                color: Colors.red[400]),
+                                          )),
+                                      value: 'delete'),
+                                  PopupMenuItem<String>(
+                                      child: Container(
+                                          width: 100,
+                                          // height: 30,
+                                          child: Text(
+                                            "Edit",
+                                            style: TextStyle(
+                                                color: Colors.blue[400]),
+                                          )),
+                                      value: 'update'),
+                                ],
+                            onSelected: (index) async {
+                              switch (index) {
+                                case 'delete':
+                                  print("delete id: " + product.id.toString());
+                                  classProv.deleteClass(product.id.toString());
+                                  break;
+                                case 'update':
+                                  print("update");
+                                  break;
+                              }
+                            });
+                      })
+                    : Text("")
                 // Text(
                 //   "${product.teacherId} tugas",
                 //   style: const TextStyle(

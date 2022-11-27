@@ -28,6 +28,7 @@ class DashboardProvider extends ChangeNotifier {
   }
 
   void init() async {
+    SessionManager.checkRoleToken();
     await getProfile();
     await getQuotes();
   }
@@ -60,6 +61,8 @@ class DashboardProvider extends ChangeNotifier {
     _isLoading = false;
     if (res["status"] == 200) {
       goPush(MainTemplate());
+      SnackBar(
+          backgroundColor: kpink, content: Text("Berhasil mengupdate profile"));
     } else if (res["status"] == 500) {
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }
@@ -74,6 +77,7 @@ class DashboardProvider extends ChangeNotifier {
             from: "en", to: "id");
         quote = translated.toString();
       }
+      notifyListeners();
     } catch (e) {
       print(e.toString());
     }

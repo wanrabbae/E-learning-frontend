@@ -23,6 +23,16 @@ class SessionManager {
     }
   }
 
+  static Future checkRoleToken() async {
+    var session = await pref;
+    var _token = session.getString("token");
+    var _role = session.getString("role");
+    if (_token != null && _role != null) {
+      role = _role;
+      token = _token;
+    }
+  }
+
   static Future setToken(String token) async {
     var session = await pref;
     session.setString(
