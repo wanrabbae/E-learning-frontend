@@ -2,6 +2,7 @@ import 'package:e_learning_app/core/provider/detailClass_provider.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/assignment.dart';
+import 'package:e_learning_app/screens/class/assignment_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -76,28 +77,31 @@ class _ClassWorkState extends State<ClassWork> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          i.title.toString(),
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                        Text(
-                                          i.expired!
-                                              .toString()
-                                              .substring(0, 10),
-                                          style: TextStyle(
-                                              fontSize: 11,
-                                              color: Colors.grey.shade500),
-                                        )
-                                      ],
+                                    Container(
+                                      width: 125,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            i.title.toString(),
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            i.expired!
+                                                .toString()
+                                                .substring(0, 10),
+                                            style: TextStyle(
+                                                fontSize: 11,
+                                                color: Colors.grey.shade500),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
-                                      width: lebar / 4.5,
+                                      width: lebar / 3.9,
                                     ),
                                     role!.toLowerCase() == "guru"
                                         ? PopupMenuButton(
@@ -135,6 +139,7 @@ class _ClassWorkState extends State<ClassWork> {
                                                   print("delete id: ");
                                                   break;
                                                 case 'update':
+                                                  goPush(AssignmentEdit());
                                                   print("update");
                                                   break;
                                               }

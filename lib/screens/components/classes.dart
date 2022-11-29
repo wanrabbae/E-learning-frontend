@@ -3,6 +3,7 @@ import 'package:e_learning_app/core/model/product_model.dart';
 import 'package:e_learning_app/core/provider/class_provider.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
+import 'package:e_learning_app/screens/class/class_edit.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -128,6 +129,7 @@ class ClassCard extends StatelessWidget {
                                   classProv.deleteClass(product.id.toString());
                                   break;
                                 case 'update':
+                                  goPush(ClassEdit());
                                   print("update");
                                   break;
                               }
