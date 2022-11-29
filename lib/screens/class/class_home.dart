@@ -282,22 +282,78 @@ class _ClassHomeState extends State<ClassHome> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            i.title.toString(),
-                                            style: TextStyle(fontSize: 12),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                i.title.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                              Text(
+                                                "1 Nov",
+                                                style: TextStyle(
+                                                    fontSize: 11,
+                                                    color:
+                                                        Colors.grey.shade500),
+                                              )
+                                            ],
                                           ),
-                                          Text(
-                                            i.description.toString(),
-                                            style: TextStyle(
-                                                fontSize: 11,
-                                                color: Colors.grey.shade500),
-                                          )
+                                          SizedBox(
+                                            width: lebar / 4.5,
+                                          ),
+                                          role!.toLowerCase() == "guru"
+                                              ? PopupMenuButton(
+                                                  icon: Icon(Icons.more_vert,
+                                                      color: Colors
+                                                          .black), // add this line
+                                                  itemBuilder: (_) =>
+                                                      <PopupMenuItem<String>>[
+                                                        PopupMenuItem<String>(
+                                                            child: Container(
+                                                                width: 100,
+                                                                // height: 30,
+                                                                child: Text(
+                                                                  "Delete",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                              .red[
+                                                                          400]),
+                                                                )),
+                                                            value: 'delete'),
+                                                        PopupMenuItem<String>(
+                                                            child: Container(
+                                                                width: 100,
+                                                                // height: 30,
+                                                                child: Text(
+                                                                  "Edit",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                              .blue[
+                                                                          400]),
+                                                                )),
+                                                            value: 'update'),
+                                                      ],
+                                                  onSelected: (index) async {
+                                                    switch (index) {
+                                                      case 'delete':
+                                                        print("delete id: ");
+                                                        break;
+                                                      case 'update':
+                                                        print("update");
+                                                        break;
+                                                    }
+                                                    ;
+                                                  })
+                                              : Text("")
                                         ],
                                       )
                                     ],

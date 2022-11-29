@@ -114,6 +114,15 @@ class _ClassTemplateState extends State<ClassTemplate> {
       darkTheme:
           ThemeData(brightness: isDark ? Brightness.dark : Brightness.light),
       home: Scaffold(
+        floatingActionButton: role!.toLowerCase() == "guru"
+            ? FloatingActionButton(
+                onPressed: () {
+                  _showDialog();
+                },
+                backgroundColor: kpink,
+                child: Icon(Icons.add),
+              )
+            : Text(""),
         resizeToAvoidBottomInset: false,
         extendBody: true,
         bottomNavigationBar: BottomNavyBar(
@@ -150,13 +159,6 @@ class _ClassTemplateState extends State<ClassTemplate> {
           backgroundColor: kpink,
         ),
         body: listWidget.elementAt(selectedIndex),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showDialog();
-          },
-          backgroundColor: kpink,
-          child: Icon(Icons.add),
-        ),
       ),
     );
   }

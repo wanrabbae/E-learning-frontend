@@ -92,7 +92,7 @@ class _AssignmentViewState extends State<AssignmentView> {
               height: 15,
             ),
             Text(
-              "Judul Tugas",
+              "Tugas Integral Tak Tentu",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(

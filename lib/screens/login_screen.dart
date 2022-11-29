@@ -148,17 +148,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 }),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  alignment: Alignment.center,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Lupa Password?",
-                      style: TextStyle(color: Colors.black, fontSize: 9),
-                    ),
-                  ),
-                ),
-                Container(
                   child: TextButton(
                     onPressed: () {
                       Navigator.push(

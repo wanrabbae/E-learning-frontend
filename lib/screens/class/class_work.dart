@@ -1,4 +1,5 @@
 import 'package:e_learning_app/core/provider/detailClass_provider.dart';
+import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/assignment.dart';
 import 'package:flutter/material.dart';
@@ -70,20 +71,76 @@ class _ClassWorkState extends State<ClassWork> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      i.title.toString(),
-                                      style: TextStyle(fontSize: 12),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          i.title.toString(),
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        Text(
+                                          i.expired!
+                                              .toString()
+                                              .substring(0, 10),
+                                          style: TextStyle(
+                                              fontSize: 11,
+                                              color: Colors.grey.shade500),
+                                        )
+                                      ],
                                     ),
-                                    Text(
-                                      i.expired!.toString().substring(0, 10),
-                                      style: TextStyle(
-                                          fontSize: 11,
-                                          color: Colors.grey.shade500),
-                                    )
+                                    SizedBox(
+                                      width: lebar / 4.5,
+                                    ),
+                                    role!.toLowerCase() == "guru"
+                                        ? PopupMenuButton(
+                                            icon: Icon(Icons.more_vert,
+                                                color: Colors
+                                                    .black), // add this line
+                                            itemBuilder: (_) =>
+                                                <PopupMenuItem<String>>[
+                                                  PopupMenuItem<String>(
+                                                      child: Container(
+                                                          width: 100,
+                                                          // height: 30,
+                                                          child: Text(
+                                                            "Delete",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .red[400]),
+                                                          )),
+                                                      value: 'delete'),
+                                                  PopupMenuItem<String>(
+                                                      child: Container(
+                                                          width: 100,
+                                                          // height: 30,
+                                                          child: Text(
+                                                            "Edit",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue[400]),
+                                                          )),
+                                                      value: 'update'),
+                                                ],
+                                            onSelected: (index) async {
+                                              switch (index) {
+                                                case 'delete':
+                                                  print("delete id: ");
+                                                  break;
+                                                case 'update':
+                                                  print("update");
+                                                  break;
+                                              }
+                                              ;
+                                            })
+                                        : Text("")
                                   ],
                                 )
                               ],
