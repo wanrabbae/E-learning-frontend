@@ -228,7 +228,11 @@ class _ClassHomeState extends State<ClassHome> {
                                                   onSelected: (index) async {
                                                     switch (index) {
                                                       case 'delete':
-                                                        print("delete id: ");
+                                                        print("delete id: " +
+                                                            i.id.toString());
+                                                        // classProv
+                                                        //     .deleteMaterial(
+                                                        //         i.id);
                                                         break;
                                                       case 'update':
                                                         goPush(MaterialEdit());

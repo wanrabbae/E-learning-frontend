@@ -93,4 +93,26 @@ class ClassRepository {
       return res.data;
     }
   }
+
+  static Future deleteMaterial(id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    var res = await dio.delete(
+      "$endpoint/materials?id=$id",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token2",
+        },
+        validateStatus: (status) => true,
+      ),
+    );
+
+    log(res.realUri.toString());
+
+    print(res.data);
+
+    if (res.statusCode == 200) {
+      return res.data;
+    }
+  }
 }
