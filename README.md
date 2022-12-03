@@ -1,9 +1,9 @@
 # e_learning_app
 
-<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390816755875920/welcome_screen.jpg">
-<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390817385021440/login.jpg">
-<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390817032712202/register.jpg">
-<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390817670254753/home.jpg">
+<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390816755875920/welcome_screen.jpg" width="150">
+<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390817385021440/login.jpg" width="150">
+<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390817032712202/register.jpg" width="150">
+<img src="https://cdn.discordapp.com/attachments/1008921423915532368/1048390817670254753/home.jpg" width="150">
 
 ## Getting Started
 
