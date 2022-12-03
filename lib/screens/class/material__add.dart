@@ -23,7 +23,19 @@ class _MaterialAddState extends State<MaterialAdd> {
   var description;
   var fileName;
   getFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: [
+          'pdf',
+          'doc',
+          'docx',
+          'xlsx',
+          'pptx',
+          'ppt',
+          'jpg',
+          'png',
+          'jpeg'
+        ]);
 
     if (result != null) {
       PlatformFile file = result.files.first;
@@ -102,6 +114,7 @@ class _MaterialAddState extends State<MaterialAdd> {
                           onTap: () {
                             getFile();
                           },
+                          initialValue: fileName?.name ?? null,
                           decoration: InputDecoration(
                             prefixIcon: Icon(PhosphorIcons.paperclipBold),
                             hintText: "File Terlampir",
