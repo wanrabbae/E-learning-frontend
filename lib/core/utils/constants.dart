@@ -17,6 +17,8 @@ String? token;
 String? role;
 
 int? idClass;
+int? idMateri;
+int? idTugas;
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

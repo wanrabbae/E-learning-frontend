@@ -141,4 +141,22 @@ class ClassRepository {
       return res.data;
     }
   }
+
+  static Future detailMaterial(id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    var res = await dio.get(
+      "$endpoint/materials?id=$id",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token2",
+        },
+        validateStatus: (status) => true,
+      ),
+    );
+    log(res.realUri.toString());
+    if (res.statusCode == 200) {
+      return res.data;
+    }
+  }
 }

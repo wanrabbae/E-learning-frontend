@@ -145,6 +145,7 @@ class _ClassHomeState extends State<ClassHome> {
                                 ),
                                 child: InkWell(
                                   onTap: () {
+                                    idMateri = i.id;
                                     goPush(MaterialView());
                                   },
                                   child: Row(

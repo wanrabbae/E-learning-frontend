@@ -15,6 +15,7 @@ class DetailClassProvider extends ChangeNotifier {
   var kelas;
   var banner;
   var classId;
+  var detailMateri;
   List<Datum>? listClass;
   List<Materials>? listMateri;
   List<Assignment>? listAssigment;
@@ -69,6 +70,20 @@ class DetailClassProvider extends ChangeNotifier {
       SnackBar(
           backgroundColor: kpink, content: Text("Berhasil menambahkan kelas"));
     } else if (res["status"] == 500) {
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
+  }
+
+  Future detailMaterial() async {
+    _isLoading = true;
+    print("ID MATERI: " + idMateri.toString());
+    var res = await ClassRepository.detailMaterial(idMateri);
+    _isLoading = false;
+    if (res["status"] == 200) {
+      detailMateri = res["data"];
+      notifyListeners();
+    } else if (res["status"] == 500) {
+      print(res);
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }
   }
