@@ -230,9 +230,9 @@ class _ClassHomeState extends State<ClassHome> {
                                                       case 'delete':
                                                         print("delete id: " +
                                                             i.id.toString());
-                                                        // classProv
-                                                        //     .deleteMaterial(
-                                                        //         i.id);
+                                                        classProv
+                                                            .deleteMaterial(
+                                                                i.id);
                                                         break;
                                                       case 'update':
                                                         goPush(MaterialEdit());

@@ -94,6 +94,32 @@ class ClassRepository {
     }
   }
 
+  static Future addMaterial(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromFile(data["file"].path,
+          filename: data["file"].name),
+      "title": data["title"],
+      "description": data["description"],
+      "classId": data["classId"],
+    });
+
+    var res = await dio.post(
+      "$endpoint/materials",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
+
   static Future deleteMaterial(id) async {
     final prefs = await SharedPreferences.getInstance();
     var token2 = prefs.getString("token");

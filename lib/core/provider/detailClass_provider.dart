@@ -4,6 +4,7 @@ import 'package:e_learning_app/core/repository/class_repository.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/core/utils/session_manager.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
+import 'package:e_learning_app/screens/template/class_template.dart';
 
 import 'package:flutter/material.dart';
 
@@ -50,11 +51,24 @@ class DetailClassProvider extends ChangeNotifier {
     _isLoading = false;
     print(res);
     if (res["status"] == 200) {
-      goBack();
+      goPush(ClassTemplate());
       SnackBar(
           backgroundColor: kpink, content: Text("Berhasil menghapus materi"));
     } else if (res["status"] == 500) {
       print(res);
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
+  }
+
+  Future addMaterial(data) async {
+    _isLoading = true;
+    var res = await ClassRepository.addMaterial(data);
+    _isLoading = false;
+    if (res["status"] == 201) {
+      goPush(ClassTemplate());
+      SnackBar(
+          backgroundColor: kpink, content: Text("Berhasil menambahkan kelas"));
+    } else if (res["status"] == 500) {
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }
   }
