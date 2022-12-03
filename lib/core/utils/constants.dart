@@ -9,13 +9,14 @@ const kpurple = Color(0xFF9ba0fc);
 const korange = Color(0xFFffaa5b);
 const quotesEndpoint = "https://zenquotes.io/api/random";
 const endpoint = "https://elearning.afkaaruna.sch.id/api";
+const endpointAsset = "https://elearning.afkaaruna.sch.id/assets";
 
 Dio dio = Dio();
 
 String? token;
 
 String? role;
-
+var detailMateri;
 int? idClass;
 int? idMateri;
 int? idTugas;

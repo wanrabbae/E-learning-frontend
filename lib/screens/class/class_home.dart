@@ -146,6 +146,13 @@ class _ClassHomeState extends State<ClassHome> {
                                 child: InkWell(
                                   onTap: () {
                                     idMateri = i.id;
+                                    detailMateri = {
+                                      "title": i.title,
+                                      "description": i.description,
+                                      "file": i.file,
+                                      "id": i.id,
+                                      "classId": i.classId
+                                    };
                                     goPush(MaterialView());
                                   },
                                   child: Row(
@@ -181,13 +188,19 @@ class _ClassHomeState extends State<ClassHome> {
                                                   style:
                                                       TextStyle(fontSize: 12),
                                                 ),
-                                                Text(
-                                                  "1 Nov",
-                                                  style: TextStyle(
-                                                      fontSize: 11,
-                                                      color:
-                                                          Colors.grey.shade500),
-                                                )
+                                                Flexible(
+                                                  child: new Container(
+                                                    child: new Text(
+                                                      i.description.toString(),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: new TextStyle(
+                                                          fontSize: 10.0,
+                                                          color: Colors
+                                                              .grey.shade400),
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
