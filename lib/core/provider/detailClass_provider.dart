@@ -73,17 +73,18 @@ class DetailClassProvider extends ChangeNotifier {
     }
   }
 
-  // Future detailMaterial() async {
-  //   _isLoading = true;
-  //   print("ID MATERI: " + idMateri.toString());
-  //   var res = await ClassRepository.detailMaterial(idMateri);
-  //   _isLoading = false;
-  //   if (res["status"] == 200) {
-  //     // detailMateri = res["data"];
-  //     notifyListeners();
-  //   } else if (res["status"] == 500) {
-  //     print(res);
-  //     SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
-  //   }
-  // }
+  Future deleteAssignment(id) async {
+    _isLoading = true;
+    var res = await ClassRepository.deleteAssignment(id);
+    _isLoading = false;
+    print(res);
+    if (res["status"] == 200) {
+      goPush(ClassTemplate());
+      SnackBar(
+          backgroundColor: kpink, content: Text("Berhasil menghapus tugas"));
+    } else if (res["status"] == 500) {
+      print(res);
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
+  }
 }

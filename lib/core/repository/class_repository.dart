@@ -177,4 +177,26 @@ class ClassRepository {
       return Assignment.fromJson(res.data["data"]);
     }
   }
+
+  static Future deleteAssignment(id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    var res = await dio.delete(
+      "$endpoint/assignments?id=$id",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token2",
+        },
+        validateStatus: (status) => true,
+      ),
+    );
+
+    log(res.realUri.toString());
+
+    print(res.data);
+
+    if (res.statusCode == 200) {
+      return res.data;
+    }
+  }
 }

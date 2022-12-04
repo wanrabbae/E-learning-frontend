@@ -137,6 +137,8 @@ class _ClassWorkState extends State<ClassWork> {
                                             onSelected: (index) async {
                                               switch (index) {
                                                 case 'delete':
+                                                  classProv
+                                                      .deleteAssignment(i.id);
                                                   print("delete id: " +
                                                       i.id.toString());
                                                   break;
