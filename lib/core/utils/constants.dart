@@ -16,7 +16,6 @@ Dio dio = Dio();
 String? token;
 
 String? role;
-var detailMateri;
 int? idClass;
 int? idMateri;
 int? idTugas;

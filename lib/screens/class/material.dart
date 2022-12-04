@@ -1,4 +1,5 @@
 import 'package:e_learning_app/core/provider/detailClass_provider.dart';
+import 'package:e_learning_app/core/provider/material_provider.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -15,68 +16,82 @@ class MaterialView extends StatefulWidget {
 }
 
 class _MaterialViewState extends State<MaterialView> {
-  final Uri _url = Uri.parse(endpointAsset + "/" + detailMateri?["file"]);
-
-  Future<void> _launchUrl() async {
-    if (!await launchUrl(
-      _url,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Could not launch $_url';
-    }
-    // launchUrl(_url);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            PhosphorIcons.arrowArcLeftFill,
-            // color: Colors.wh,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: kpink,
+    return ChangeNotifierProvider(
+      create: (_) => MaterialProvider(),
+      child: Consumer<MaterialProvider>(
+        builder: (context, materialProv, child) {
+          print(materialProv.detailMaterial);
+          return materialProv.isLoading == true
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Scaffold(
+                  appBar: AppBar(
+                    leading: IconButton(
+                      icon: Icon(
+                        PhosphorIcons.arrowArcLeftFill,
+                        // color: Colors.wh,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    backgroundColor: kpink,
+                  ),
+                  body: SingleChildScrollView(
+                      child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    margin: EdgeInsets.only(top: 40),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          materialProv.detailMaterial["title"] ?? "",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          decoration:
+                              BoxDecoration(border: Border.all(width: 1)),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          child: Text(
+                              """${materialProv.detailMaterial["description"] ?? ''}"""),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Text(
+                          "File Lampiran",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        TextButton(
+                            onPressed: () async {
+                              final Uri _url = Uri.parse(
+                                  materialProv.detailMaterial["file"]);
+                              if (!await launchUrl(
+                                _url,
+                                mode: LaunchMode.externalApplication,
+                              )) {
+                                throw 'Could not launch $_url';
+                              }
+                            },
+                            child: Text("Buka File Lampiran"))
+                      ],
+                    ),
+                  )),
+                );
+        },
       ),
-      body: SingleChildScrollView(
-          child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        margin: EdgeInsets.only(top: 40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              detailMateri?["title"] ?? "",
-              // materialData.detailMateri
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              decoration: BoxDecoration(border: Border.all(width: 1)),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              child: Text(detailMateri?["description"] ?? ""),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Text(
-              "File Lampiran",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            TextButton(onPressed: _launchUrl, child: Text("Buka File Lampiran"))
-          ],
-        ),
-      )),
     );
   }
 }

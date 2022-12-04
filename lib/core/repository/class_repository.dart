@@ -142,7 +142,7 @@ class ClassRepository {
     }
   }
 
-  static Future detailMaterial(id) async {
+  static Future<Materials?> detailMaterial(id) async {
     final prefs = await SharedPreferences.getInstance();
     var token2 = prefs.getString("token");
     var res = await dio.get(
@@ -156,7 +156,25 @@ class ClassRepository {
     );
     log(res.realUri.toString());
     if (res.statusCode == 200) {
-      return res.data;
+      return Materials.fromJson(res.data["data"]);
+    }
+  }
+
+  static Future<Assignment?> getDetailAssignment(id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    var res = await dio.get(
+      "$endpoint/assignments?id=$id",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token2",
+        },
+      ),
+    );
+
+    log(res.realUri.toString());
+    if (res.statusCode == 200) {
+      return Assignment.fromJson(res.data["data"]);
     }
   }
 }

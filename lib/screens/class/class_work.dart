@@ -57,6 +57,7 @@ class _ClassWorkState extends State<ClassWork> {
                           ),
                           child: InkWell(
                             onTap: () {
+                              idTugas = i.id;
                               goPush(AssignmentView());
                             },
                             child: Row(
@@ -136,7 +137,8 @@ class _ClassWorkState extends State<ClassWork> {
                                             onSelected: (index) async {
                                               switch (index) {
                                                 case 'delete':
-                                                  print("delete id: ");
+                                                  print("delete id: " +
+                                                      i.id.toString());
                                                   break;
                                                 case 'update':
                                                   goPush(AssignmentEdit());

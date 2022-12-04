@@ -146,13 +146,6 @@ class _ClassHomeState extends State<ClassHome> {
                                 child: InkWell(
                                   onTap: () {
                                     idMateri = i.id;
-                                    detailMateri = {
-                                      "title": i.title,
-                                      "description": i.description,
-                                      "file": i.file,
-                                      "id": i.id,
-                                      "classId": i.classId
-                                    };
                                     goPush(MaterialView());
                                   },
                                   child: Row(
