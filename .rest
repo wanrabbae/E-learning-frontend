@@ -1,0 +1,2 @@
+GET https://elearning.afkaaruna.sch.id/api/works?id=1
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNjY5Nzc2NjMyLCJleHAiOjE3MDEzMTI2MzJ9.I5MhIj6k_cmMEbQakbPgWqAHHwnAMHNjRoVow1qmRBU"
