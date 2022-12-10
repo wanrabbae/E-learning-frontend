@@ -66,27 +66,7 @@ class _WorkListState extends State<WorkList> {
                                     style: TextStyle(fontSize: 25),
                                   ),
                                   Text(
-                                    "Diterima",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ]),
-                          ),
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey.shade300, width: 0.5)),
-                          ),
-                          Container(
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "0",
-                                    style: TextStyle(fontSize: 25),
-                                  ),
-                                  Text(
-                                    "Ditolak",
+                                    "Dikembalikan",
                                     style: TextStyle(fontSize: 15),
                                   ),
                                 ]),
@@ -120,73 +100,81 @@ class _WorkListState extends State<WorkList> {
                                       mainAxisSpacing: 10),
                               itemBuilder: (context, index) {
                                 var i = workProv.listWorks![index];
-                                return Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1),
-                                        blurRadius: 10,
-                                        offset: Offset(2, 3),
-                                      ),
-                                    ],
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      workData = {
-                                        "user": i.user,
-                                        "id": i.id,
-                                        "status": i.status,
-                                        "file": i.file,
-                                      };
-                                      goPush(WorkDetail());
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          child: CircleAvatar(
-                                            backgroundImage:
-                                                NetworkImage(i.user!.photo),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              width: 125,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    i.user!.nama.toString(),
-                                                    style:
-                                                        TextStyle(fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
+                                return i.status == "success"
+                                    ? Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Color.fromRGBO(0, 0, 0, 0.1),
+                                              blurRadius: 10,
+                                              offset: Offset(2, 3),
                                             ),
                                           ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {
+                                            workData = {
+                                              "user": i.user,
+                                              "id": i.id,
+                                              "status": i.status,
+                                              "file": i.file,
+                                            };
+                                            goPush(WorkDetail());
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                child: CircleAvatar(
+                                                  backgroundImage: NetworkImage(
+                                                      i.user!.photo),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    width: 125,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          i.user!.nama
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : Text("");
                               })
                           : Text("")
                     ]),

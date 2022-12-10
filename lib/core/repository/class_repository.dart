@@ -242,4 +242,23 @@ class ClassRepository {
       return res.data;
     }
   }
+
+  static Future updateStatusWork(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+
+    var res = await dio.put(
+      "$endpoint/work-status",
+      data: data,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+    print(res.data);
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
 }
