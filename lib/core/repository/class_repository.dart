@@ -217,4 +217,29 @@ class ClassRepository {
       return WorksModel.fromJson(res.data);
     }
   }
+
+  static Future addWork(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromFile(data["file"].path,
+          filename: data["file"].name),
+      "assignmentId": idTugas,
+    });
+
+    var res = await dio.post(
+      "$endpoint/works",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+    print(res.data);
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
 }

@@ -3,6 +3,7 @@ import 'package:e_learning_app/core/utils/component.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,6 +20,37 @@ class AssignmentView extends StatefulWidget {
 }
 
 class _AssignmentViewState extends State<AssignmentView> {
+  var fileName;
+  getFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: [
+          'pdf',
+          'doc',
+          'docx',
+          'xlsx',
+          'pptx',
+          'ppt',
+          'jpg',
+          'png',
+          'jpeg'
+        ]);
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+      print(result.files.first);
+      setState(() {
+        fileName = file;
+      });
+    } else {
+      // User canceled the picker
+      print("CANCEL UPLOAD FILE");
+      setState(() {
+        fileName = null;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -33,21 +65,30 @@ class _AssignmentViewState extends State<AssignmentView> {
                 bottomNavigationBar: BottomAppBar(
                     elevation: 2,
                     child: Container(
-                      height: 100,
+                      height: 150,
                       padding: EdgeInsets.all(10),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Nama File",
-                                style: TextStyle(
-                                    fontSize: 11, color: Colors.grey.shade500),
+                              Flexible(
+                                child: new Container(
+                                  child: new Text(
+                                    fileName?.name ?? "",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: new TextStyle(
+                                        fontSize: 10.0,
+                                        color: Colors.grey.shade500),
+                                  ),
+                                ),
                               ),
                               Text(
-                                "Tenggat 1 Nov",
+                                "Tenggat " +
+                                    assignProv.assignments["expired"]
+                                        .toString()
+                                        .split(" ")[0],
                                 style: TextStyle(
                                     fontSize: 11, color: Colors.grey.shade500),
                               )
@@ -58,12 +99,48 @@ class _AssignmentViewState extends State<AssignmentView> {
                           ),
                           Container(
                             width: double.infinity,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
                             child: SizedBox(
                               width: EdgeInsets.symmetric(horizontal: 60)
                                   .horizontal,
                               child: TextButton(
                                 onPressed: () {
-                                  goPush(ClassTemplate());
+                                  getFile();
+                                },
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                  WidgetSpan(
+                                      child: Icon(
+                                    PhosphorIcons.plus,
+                                    size: 15,
+                                    color: Colors.black,
+                                  )),
+                                  TextSpan(
+                                    text: "Tambahkan File Lampiran",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 12),
+                                  )
+                                ])),
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.all(10),
+                                  backgroundColor: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            child: SizedBox(
+                              width: EdgeInsets.symmetric(horizontal: 60)
+                                  .horizontal,
+                              child: TextButton(
+                                onPressed: () {
+                                  var data = {
+                                    "file": fileName,
+                                  };
+                                  assignProv.addWork(data);
                                 },
                                 child: Text(
                                   "Kumpulkan Tugas",
@@ -87,7 +164,10 @@ class _AssignmentViewState extends State<AssignmentView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Tenggat 1 November",
+                        "Tenggat " +
+                            assignProv.assignments["expired"]
+                                .toString()
+                                .split(" ")[0],
                         style: TextStyle(
                             fontSize: 11, color: Colors.grey.shade500),
                       ),
