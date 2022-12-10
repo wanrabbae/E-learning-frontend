@@ -1,5 +1,6 @@
 import 'package:e_learning_app/core/provider/detailClass_provider.dart';
 import 'package:e_learning_app/core/provider/material_provider.dart';
+import 'package:e_learning_app/core/utils/component.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -28,18 +29,7 @@ class _MaterialViewState extends State<MaterialView> {
                   child: CircularProgressIndicator(),
                 )
               : Scaffold(
-                  appBar: AppBar(
-                    leading: IconButton(
-                      icon: Icon(
-                        PhosphorIcons.arrowArcLeftFill,
-                        // color: Colors.wh,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    backgroundColor: kpink,
-                  ),
+                  appBar: customAppBar1(namaKelas.toString(), context),
                   body: SingleChildScrollView(
                       child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 15),

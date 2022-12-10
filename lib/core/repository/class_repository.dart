@@ -199,4 +199,22 @@ class ClassRepository {
       return res.data;
     }
   }
+
+  static Future<WorksModel?> getListWork(assignment_id) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    var res = await dio.get(
+      "$endpoint/works?id=$assignment_id",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token2",
+        },
+      ),
+    );
+
+    log(res.realUri.toString());
+    if (res.statusCode == 200) {
+      return WorksModel.fromJson(res.data);
+    }
+  }
 }

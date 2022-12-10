@@ -14,6 +14,7 @@ const endpointAsset = "https://elearning.afkaaruna.sch.id/assets";
 Dio dio = Dio();
 
 String? token;
+String? namaKelas;
 
 String? role;
 int? idClass;
@@ -25,3 +26,5 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 double lebar = MediaQuery.of(navigatorKey.currentContext!).size.width;
 
 double tinggi = MediaQuery.of(navigatorKey.currentContext!).size.height;
+
+var workData = {};

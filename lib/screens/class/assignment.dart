@@ -1,4 +1,5 @@
 import 'package:e_learning_app/core/provider/assignment_provider.dart';
+import 'package:e_learning_app/core/utils/component.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AssignmentView extends StatefulWidget {
   const AssignmentView({Key? key}) : super(key: key);
@@ -26,18 +29,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                 child: CircularProgressIndicator(),
               )
             : Scaffold(
-                appBar: AppBar(
-                  leading: IconButton(
-                    icon: Icon(
-                      PhosphorIcons.arrowArcLeftFill,
-                      // color: Colors.wh,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  backgroundColor: kpink,
-                ),
+                appBar: customAppBar1(namaKelas.toString(), context),
                 bottomNavigationBar: BottomAppBar(
                     elevation: 2,
                     child: Container(
@@ -128,6 +120,18 @@ class _AssignmentViewState extends State<AssignmentView> {
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
+                      TextButton(
+                          onPressed: () async {
+                            final Uri _url =
+                                Uri.parse(assignProv.assignments["file"]);
+                            if (!await launchUrl(
+                              _url,
+                              mode: LaunchMode.externalApplication,
+                            )) {
+                              throw 'Could not launch $_url';
+                            }
+                          },
+                          child: Text("Buka File Lampiran"))
                     ],
                   ),
                 )),

@@ -150,6 +150,67 @@ class Assignment {
       };
 }
 
+class WorksModel {
+  WorksModel({
+    this.status,
+    this.data,
+  });
+
+  int? status;
+  List<Works>? data;
+
+  factory WorksModel.fromJson(Map<String, dynamic> json) => WorksModel(
+        status: json["status"] == null ? null : json["status"],
+        data: json["data"] == null
+            ? null
+            : List<Works>.from(json["data"].map((x) => Works.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "status": status == null ? null : status,
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data!.map((x) => x.toJson())),
+      };
+}
+
+class Works {
+  Works({
+    this.id,
+    this.assignment_id,
+    this.user_id,
+    this.file,
+    this.status,
+    this.user,
+  });
+
+  int? id;
+  int? assignment_id;
+  int? user_id;
+  String? file;
+  String? status;
+  User? user;
+
+  factory Works.fromJson(Map<String, dynamic> json) => Works(
+        id: json["id"] == null ? null : json["id"],
+        assignment_id:
+            json["assignment_id"] == null ? null : json["assignment_id"],
+        user_id: json["user_id"] == null ? null : json["user_id"],
+        file: json["file"] == null ? null : json["file"],
+        status: json["status"] == null ? null : json["status"],
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id == null ? null : id,
+        "assignment_id": assignment_id == null ? null : assignment_id,
+        "user_id": user_id == null ? null : user_id,
+        "file": file == null ? null : file,
+        "status": status == null ? null : status,
+        "user": user == null ? null : user!.toJson(),
+      };
+}
+
 class User {
   User({
     this.id,
