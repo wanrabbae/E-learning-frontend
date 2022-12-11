@@ -1,6 +1,7 @@
 import 'package:e_learning_app/core/model/user_model.dart';
 import 'package:e_learning_app/core/repository/auth_repository.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
+import 'package:e_learning_app/core/utils/custom_component.dart';
 import 'package:e_learning_app/core/utils/session_manager.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/login_screen.dart';
@@ -21,7 +22,7 @@ class AuthProvider extends ChangeNotifier {
     isLoading = false;
     if (res["status"] == 201) {
       goBack();
-      SnackBar(backgroundColor: Colors.green, content: Text(res["message"]));
+      infoSnackBar(res["message"]);
     } else if (res["status"] == 400) {
       SnackBar(backgroundColor: Colors.red, content: Text(res["message"]));
     }
