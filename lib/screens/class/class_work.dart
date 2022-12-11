@@ -3,6 +3,7 @@ import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/assignment.dart';
 import 'package:e_learning_app/screens/class/assignment_edit.dart';
+import 'package:e_learning_app/screens/class/work/work_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -58,7 +59,11 @@ class _ClassWorkState extends State<ClassWork> {
                           child: InkWell(
                             onTap: () {
                               idTugas = i.id;
-                              goPush(AssignmentView());
+                              if (role == "guru") {
+                                goPush(WorkList());
+                              } else {
+                                goPush(AssignmentView());
+                              }
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,

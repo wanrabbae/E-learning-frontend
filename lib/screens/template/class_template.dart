@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:e_learning_app/core/utils/custom_component.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/class/assignment_add.dart';
@@ -146,18 +147,7 @@ class _ClassTemplateState extends State<ClassTemplate> {
             ),
           ],
         ),
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              PhosphorIcons.arrowArcLeftFill,
-              // color: Colors.wh,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          backgroundColor: kpink,
-        ),
+        appBar: customAppBar1(namaKelas.toString(), context),
         body: listWidget.elementAt(selectedIndex),
       ),
     );

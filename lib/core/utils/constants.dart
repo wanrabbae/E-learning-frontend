@@ -14,6 +14,7 @@ const endpointAsset = "https://elearning.afkaaruna.sch.id/assets";
 Dio dio = Dio();
 
 String? token;
+String? namaKelas;
 
 String? role;
 int? idClass;
@@ -31,3 +32,4 @@ const kTiny = 2.0;
 const kSmall = 4.0;
 const kMedium = 8.0;
 const kLarge = 16.0;
+var workData = {};

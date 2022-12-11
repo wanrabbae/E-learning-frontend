@@ -53,6 +53,7 @@ class ClassCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           idClass = product.id;
+          namaKelas = product.title;
           goPush(ClassTemplate());
         },
         child: Container(

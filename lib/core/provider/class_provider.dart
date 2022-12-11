@@ -2,6 +2,7 @@ import 'package:e_learning_app/core/model/class_model.dart';
 import 'package:e_learning_app/core/model/detailClass_model.dart';
 import 'package:e_learning_app/core/repository/class_repository.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
+import 'package:e_learning_app/core/utils/custom_component.dart';
 import 'package:e_learning_app/core/utils/session_manager.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/main_template.dart';
@@ -43,8 +44,7 @@ class ClassProvider extends ChangeNotifier {
     _isLoading = false;
     if (res["status"] == 201) {
       goRemove(MainTemplate());
-      SnackBar(
-          backgroundColor: kpink, content: Text("Berhasil menambahkan kelas"));
+      infoSnackBar("Berhasil Menambahkan Kelas");
     } else if (res["status"] == 500) {
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }
@@ -56,8 +56,7 @@ class ClassProvider extends ChangeNotifier {
     _isLoading = false;
     if (res["status"] == 200) {
       goPush(MainTemplate());
-      SnackBar(
-          backgroundColor: kpink, content: Text("Berhasil menghapus kelas"));
+      infoSnackBar("Berhasil Menghapus Kelas");
     } else if (res["status"] == 500) {
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }
