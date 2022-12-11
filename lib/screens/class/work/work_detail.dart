@@ -1,6 +1,6 @@
 import 'package:e_learning_app/core/provider/work_provider.dart';
-import 'package:e_learning_app/core/utils/component.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
+import 'package:e_learning_app/core/utils/custom_component.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -108,16 +108,10 @@ class _WorkDetailState extends State<WorkDetail> {
                     print(data);
                     workProv.updateStatus(data);
                   },
-                  child: workProv.isLoading
-                      ? Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
-                      : Text(
-                          "Kembalikan Tugas",
-                          style: TextStyle(color: Colors.white),
-                        ),
+                  child: Text(
+                    "Kembalikan Tugas",
+                    style: TextStyle(color: Colors.white),
+                  ),
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.all(10),
                     backgroundColor: Colors.red.shade500,

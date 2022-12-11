@@ -1,6 +1,7 @@
 import 'package:e_learning_app/core/provider/assignment_provider.dart';
-import 'package:e_learning_app/core/utils/component.dart';
+
 import 'package:e_learning_app/core/utils/constants.dart';
+import 'package:e_learning_app/core/utils/custom_component.dart';
 import 'package:e_learning_app/helper/navigator_helper.dart';
 import 'package:e_learning_app/screens/template/class_template.dart';
 import 'package:file_picker/file_picker.dart';

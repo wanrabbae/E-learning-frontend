@@ -242,6 +242,7 @@ class _ClassHomeState extends State<ClassHome> {
                                                                 i.id);
                                                         break;
                                                       case 'update':
+                                                        idMateri = i.id;
                                                         goPush(MaterialEdit());
                                                         print("update");
                                                         break;

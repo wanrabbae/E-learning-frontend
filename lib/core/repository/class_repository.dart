@@ -75,6 +75,32 @@ class ClassRepository {
     }
   }
 
+  static Future updateClass(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    String fileName = data["image"].path.split("/").last;
+
+    FormData formData = FormData.fromMap({
+      "banner":
+          await MultipartFile.fromFile(data["image"].path, filename: fileName),
+      "title": data["nama"],
+      "id": data["id"],
+    });
+
+    var res = await dio.put(
+      "$endpoint/class",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
+
   static Future deleteClass(id) async {
     final prefs = await SharedPreferences.getInstance();
     var token2 = prefs.getString("token");
@@ -107,6 +133,32 @@ class ClassRepository {
     });
 
     var res = await dio.post(
+      "$endpoint/materials",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
+
+  static Future updateMaterial(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromFile(data["file"].path,
+          filename: data["file"].name),
+      "title": data["title"],
+      "description": data["description"],
+      "id": data["id"],
+    });
+
+    var res = await dio.put(
       "$endpoint/materials",
       data: formData,
       options: Options(headers: {

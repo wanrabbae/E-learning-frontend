@@ -35,6 +35,7 @@ class AuthProvider extends ChangeNotifier {
     if (res["status"] == 200) {
       SessionManager.setToken(res["token"]);
       SessionManager.setRole(res["data"]["role"]);
+      infoSnackBar(res["message"]);
       goRemove(MainTemplate());
     } else if (res["status"] == 400) {
       SnackBar(backgroundColor: Colors.red, content: Text(res["message"]));

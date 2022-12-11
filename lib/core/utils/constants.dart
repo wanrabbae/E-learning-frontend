@@ -20,6 +20,9 @@ String? role;
 int? idClass;
 int? idMateri;
 int? idTugas;
+int? idKelas;
+String? className;
+String? classBanner;
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -33,3 +36,4 @@ const kSmall = 4.0;
 const kMedium = 8.0;
 const kLarge = 16.0;
 var workData = {};
+var classData = {};

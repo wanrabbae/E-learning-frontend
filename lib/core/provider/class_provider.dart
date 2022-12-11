@@ -50,6 +50,18 @@ class ClassProvider extends ChangeNotifier {
     }
   }
 
+  Future editClass(data) async {
+    _isLoading = true;
+    var res = await ClassRepository.updateClass(data);
+    _isLoading = false;
+    if (res["status"] == 201) {
+      goRemove(MainTemplate());
+      infoSnackBar("Berhasil Menambahkan Kelas");
+    } else if (res["status"] == 500) {
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
+  }
+
   Future deleteClass(id) async {
     _isLoading = true;
     var res = await ClassRepository.deleteClass(id);

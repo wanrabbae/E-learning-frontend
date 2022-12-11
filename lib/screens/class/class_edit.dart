@@ -91,8 +91,8 @@ class _ClassEditState extends State<ClassEdit> {
           },
         )
       };
-  var nama;
 
+  var nama;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -129,11 +129,12 @@ class _ClassEditState extends State<ClassEdit> {
                               children: [
                                 TextFormField(
                                   onChanged: (val) {
+                                    print(val);
                                     setState(() {
                                       nama = val;
                                     });
                                   },
-                                  initialValue: "Matematika",
+                                  initialValue: classData["title"] ?? nama,
                                   decoration: InputDecoration(
                                     hintText: "Nama Kelas",
                                     hintStyle: TextStyle(fontSize: 20),
@@ -163,14 +164,22 @@ class _ClassEditState extends State<ClassEdit> {
                                 ),
                                 SizedBox(height: 20),
                                 Container(
-                                  width: image != null ? double.infinity : 0,
-                                  height: image != null ? 150 : 0,
+                                  width: double.infinity,
+                                  height: 150,
                                   child: image != null
                                       ? Image.file(
                                           image!,
                                           fit: BoxFit.cover,
                                         )
-                                      : Text(""),
+                                      : workData["banner"] != null
+                                          ? Image.network(
+                                              workData["banner"],
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Image.network(
+                                              "https://picsum.photos/500/300",
+                                              fit: BoxFit.cover,
+                                            ),
                                 ),
                                 SizedBox(height: 20),
                                 Container(
@@ -182,10 +191,11 @@ class _ClassEditState extends State<ClassEdit> {
                                       onPressed: () {
                                         var data = {
                                           "image": image,
-                                          "nama": nama.toString(),
+                                          "nama": nama,
+                                          "id": idKelas,
                                         };
-
-                                        classProv.addClass(data);
+                                        print(data);
+                                        classProv.editClass(data);
                                       },
                                       child: Text(
                                         "Edit Kelas",

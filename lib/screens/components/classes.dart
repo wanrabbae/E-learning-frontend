@@ -130,8 +130,13 @@ class ClassCard extends StatelessWidget {
                                   classProv.deleteClass(product.id.toString());
                                   break;
                                 case 'update':
+                                  idKelas = product.id;
+                                  classData = {
+                                    "title": product.title,
+                                    "banner": product.banner,
+                                    "class_id": product.id,
+                                  };
                                   goPush(ClassEdit());
-                                  print("update");
                                   break;
                               }
                             });
