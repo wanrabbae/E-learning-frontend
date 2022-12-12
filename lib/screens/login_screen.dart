@@ -160,6 +160,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.black, fontSize: 12),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "E-Learning App \n v1.0.0",
+                  style: TextStyle(fontSize: 10, color: Colors.grey.shade400),
+                  textAlign: TextAlign.center,
                 )
               ],
             ),
