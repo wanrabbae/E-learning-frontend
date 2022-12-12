@@ -148,6 +148,7 @@ class _ClassWorkState extends State<ClassWork> {
                                                       i.id.toString());
                                                   break;
                                                 case 'update':
+                                                  idTugas = i.id;
                                                   goPush(AssignmentEdit());
                                                   print("update");
                                                   break;

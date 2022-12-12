@@ -52,11 +52,14 @@ class ClassRepository {
   static Future addClass(data) async {
     final prefs = await SharedPreferences.getInstance();
     var token2 = prefs.getString("token");
-    String fileName = data["image"].path.split("/").last;
+    String fileName = data["image"] != null
+        ? data["image"].path.split("/").last
+        : "https://picsum.photos/500/300";
 
     FormData formData = FormData.fromMap({
-      "banner":
-          await MultipartFile.fromFile(data["image"].path, filename: fileName),
+      "banner": data["image"] != null
+          ? await MultipartFile.fromFile(data["image"].path, filename: fileName)
+          : "https://picsum.photos/500/300",
       "title": data["nama"],
     });
 
@@ -78,11 +81,13 @@ class ClassRepository {
   static Future updateClass(data) async {
     final prefs = await SharedPreferences.getInstance();
     var token2 = prefs.getString("token");
-    String fileName = data["image"].path.split("/").last;
+    String fileName =
+        data["image"] != null ? data["image"].path.split("/").last : "null";
 
     FormData formData = FormData.fromMap({
-      "banner":
-          await MultipartFile.fromFile(data["image"].path, filename: fileName),
+      "banner": data["image"] != null
+          ? await MultipartFile.fromFile(data["image"].path, filename: fileName)
+          : null,
       "title": data["nama"],
       "id": data["id"],
     });
@@ -151,8 +156,10 @@ class ClassRepository {
     var token2 = prefs.getString("token");
 
     FormData formData = FormData.fromMap({
-      "file": await MultipartFile.fromFile(data["file"].path,
-          filename: data["file"].name),
+      "file": data["file"] != null
+          ? await MultipartFile.fromFile(data["file"].path,
+              filename: data["file"].name)
+          : null,
       "title": data["title"],
       "description": data["description"],
       "id": data["id"],
@@ -253,6 +260,35 @@ class ClassRepository {
 
     log(res.realUri.toString());
     print(res.data);
+    if (res.statusCode == 201) {
+      return res.data;
+    }
+  }
+
+  static Future updateAssignment(data) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token2 = prefs.getString("token");
+    print(data["file"]);
+    FormData formData = FormData.fromMap({
+      "file": data["file"] != null
+          ? await MultipartFile.fromFile(data["file"].path,
+              filename: data["file"].name)
+          : null,
+      "title": data["title"],
+      "description": data["description"],
+      "expired": data["deadline"].toString().split(" ")[0],
+      "id": data["id"],
+    });
+
+    var res = await dio.put(
+      "$endpoint/assignments",
+      data: formData,
+      options: Options(headers: {
+        "Authorization": "Bearer $token2",
+      }),
+    );
+
+    log(res.realUri.toString());
     if (res.statusCode == 201) {
       return res.data;
     }

@@ -80,7 +80,7 @@ class DetailClassProvider extends ChangeNotifier {
     if (res["status"] == 201) {
       goPush(ClassTemplate());
       SnackBar(
-          backgroundColor: kpink, content: Text("Berhasil menambahkan kelas"));
+          backgroundColor: kpink, content: Text("Berhasil menambahkan tugas"));
     } else if (res["status"] == 500) {
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }
