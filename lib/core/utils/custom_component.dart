@@ -62,3 +62,35 @@ void errorSnackBar(dynamic error) {
     ),
   );
 }
+
+Future alertDialog(msg, context) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          title: Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Success",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    msg,
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                  )
+                ],
+              )),
+        );
+      });
+}

@@ -450,8 +450,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 child: TextButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.red.shade600)),
                                   onPressed: () {
                                     showDialog(
                                       context: navigatorKey.currentContext!,
@@ -527,10 +532,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Text(
                                     "Hapus Akun",
                                     style: TextStyle(
-                                        color: Colors.red.shade600,
-                                        fontSize: 12),
+                                        color: Colors.white, fontSize: 12),
                                   ),
                                 ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "E-Learning App \n v1.0.0",
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.grey.shade400),
+                                textAlign: TextAlign.center,
                               )
                             ]),
                       ),

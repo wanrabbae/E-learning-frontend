@@ -43,8 +43,9 @@ class ClassProvider extends ChangeNotifier {
     var res = await ClassRepository.addClass(data);
     _isLoading = false;
     if (res["status"] == 201) {
-      goRemove(MainTemplate());
       infoSnackBar("Berhasil Menambahkan Kelas");
+      goRemove(MainTemplate());
+      notifyListeners();
     } else if (res["status"] == 500) {
       SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
     }

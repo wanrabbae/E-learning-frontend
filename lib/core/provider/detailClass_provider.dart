@@ -73,6 +73,19 @@ class DetailClassProvider extends ChangeNotifier {
     }
   }
 
+  Future addAssignment(data) async {
+    _isLoading = true;
+    var res = await ClassRepository.addAssignment(data);
+    _isLoading = false;
+    if (res["status"] == 201) {
+      goPush(ClassTemplate());
+      SnackBar(
+          backgroundColor: kpink, content: Text("Berhasil menambahkan kelas"));
+    } else if (res["status"] == 500) {
+      SnackBar(backgroundColor: Colors.red, content: Text("Error 400"));
+    }
+  }
+
   Future deleteAssignment(id) async {
     _isLoading = true;
     var res = await ClassRepository.deleteAssignment(id);
