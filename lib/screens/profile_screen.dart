@@ -76,14 +76,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    FlatButton.icon(
+                    ElevatedButton.icon(
                       onPressed: () {
                         getImage();
                       },
                       label: Text('Galeri'),
                       icon: Icon(Icons.image),
                     ),
-                    FlatButton.icon(
+                    ElevatedButton.icon(
                       onPressed: () {
                         getPhoto();
                       },

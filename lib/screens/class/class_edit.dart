@@ -70,14 +70,14 @@ class _ClassEditState extends State<ClassEdit> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    FlatButton.icon(
+                    ElevatedButton.icon(
                       onPressed: () {
                         getImage();
                       },
                       label: Text('Galeri'),
                       icon: Icon(Icons.image),
                     ),
-                    FlatButton.icon(
+                    ElevatedButton.icon(
                       onPressed: () {
                         getPhoto();
                       },

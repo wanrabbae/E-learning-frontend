@@ -94,3 +94,14 @@ Future alertDialog(msg, context) {
         );
       });
 }
+
+CustomSnackBar(
+  String? text, [
+  isSuccess = true,
+]) =>
+    ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
+      SnackBar(
+        backgroundColor: isSuccess ? Colors.lightGreen : Colors.red,
+        content: isSuccess ? Text(text ?? '') : Text(text ?? ''),
+      ),
+    );

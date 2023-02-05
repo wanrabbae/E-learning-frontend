@@ -1,3 +1,4 @@
+// import 'dart:convert';
 import 'package:e_learning_app/core/model/user_model.dart';
 import 'package:e_learning_app/core/repository/auth_repository.dart';
 import 'package:e_learning_app/core/utils/constants.dart';
@@ -21,10 +22,10 @@ class AuthProvider extends ChangeNotifier {
     var res = await AuthRepository.register(requestBody);
     isLoading = false;
     if (res["status"] == 201) {
+      CustomSnackBar(res["message"]);
       goBack();
-      infoSnackBar(res["message"]);
     } else if (res["status"] == 400) {
-      SnackBar(backgroundColor: Colors.red, content: Text(res["message"]));
+      CustomSnackBar(res["message"], false);
     }
   }
 
@@ -32,13 +33,29 @@ class AuthProvider extends ChangeNotifier {
     isLoading = true;
     var res = await AuthRepository.login(requestBody);
     isLoading = false;
+    print(res["status"]);
     if (res["status"] == 200) {
       SessionManager.setToken(res["token"]);
       SessionManager.setRole(res["data"]["role"]);
-      infoSnackBar(res["message"]);
       goRemove(MainTemplate());
+      CustomSnackBar(res["message"]);
     } else if (res["status"] == 400) {
-      SnackBar(backgroundColor: Colors.red, content: Text(res["message"]));
+      CustomSnackBar(res["message"], false);
+    }
+  }
+
+  Future forgotPassword(Map<String, dynamic> requestBody) async {
+    isLoading = true;
+    var res = await AuthRepository.login(requestBody);
+    isLoading = false;
+
+    if (res["status"] == 200) {
+      goRemove(MainTemplate());
+    } else {
+      SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(res["message"]),
+      );
     }
   }
 }
